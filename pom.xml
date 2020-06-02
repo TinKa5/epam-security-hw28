@@ -16,8 +16,8 @@
         <tomcat.version>8.5.23</tomcat.version>
         <log4j.version>1.2.17</log4j.version>
         <h2.version>1.4.200</h2.version>
-        <liquibase.version>3.8.5</liquibase.version>
-    </properties>
+        <spring.securiry>5.3.0.RELEASE</spring.securiry>
+           </properties>
 
 
     <build>
@@ -60,33 +60,7 @@
                 </configuration>
             </plugin>
 
-            <!--Liquibase-->
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-                <version>${liquibase.version}</version>
-                <executions>
-                    <execution>
-                        <id>test</id>
-                        <phase>process-test-resources</phase>
-                        <goals>
-                            <goal>update</goal>
-                        </goals>
-                        <configuration>
-                            <propertyFile>src/test/resources/liquibase/liquibase.properties</propertyFile>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>default-cli</id>
-                        <goals>
-                            <goal>update</goal>
-                        </goals>
-                        <configuration>
-                            <propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
 
            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -101,6 +75,32 @@
     </build>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>5.3.0.RELEASE</version>
+        </dependency>
+
+
 
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
         <dependency>
@@ -157,17 +157,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!--Liquibase-->
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>${liquibase.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-maven-plugin</artifactId>
-            <version>${liquibase.version}</version>
-        </dependency>
 
         <!--H2 DB-->
         <dependency>
@@ -245,6 +234,17 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jsp-api</artifactId>
             <version>${tomcat.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+            <version>2.2.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>2.2.5.RELEASE</version>
         </dependency>
     </dependencies>
 

@@ -26,4 +26,10 @@ public class WebConfig implements WebMvcConfigurer {
         return vr;
     }
 
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+
+        registry.addViewController("/admin-page").setViewName("admin-page");
+    }
+
 }
